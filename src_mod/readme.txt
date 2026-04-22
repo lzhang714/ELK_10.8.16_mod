@@ -27,3 +27,5 @@ Within this loop, a few lines are added at the end to copy "vmatmt_const" back i
 
 5. 
 Necessary declaration and allocation of the new variables are added in moddftu.f90 and init0.f90.
+
+ 
