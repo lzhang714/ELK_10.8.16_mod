@@ -3,7 +3,7 @@
 # 
 # Upon login PrgEnv-gnu and cray-mpich should be loaded by default.
 # 
-# Additionaly, you need to: load cray-fftw
+# Additionaly, you need to: module load cray-fftw
 # 
 # We have these modules loaded: 
 # 
