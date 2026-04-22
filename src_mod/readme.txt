@@ -19,7 +19,7 @@ call gendmatmt
 call genvmatmt
 
 2. 
-subroutine gendmatmt (gendmatmt.f90) is not touched. 
+subroutine gendmatmt (gendmatmt.f90) is not touched too. 
 
 3. 
 subroutine genvmatmt (genvmatmt.f90) will generate the potential matrix, with this line: 
