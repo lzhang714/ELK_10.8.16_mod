@@ -18,7 +18,7 @@
 #   8) cray-libsci/25.09.0             17) darshan/default
 #   9) cray-mpich/9.0.1                18) cray-fftw/3.3.10.11
 # 
-# At least, just do: make
+# At last, just do: make
 # The executable is src/elk
 # 
 # ----------------------------------------------------------------------------- #
