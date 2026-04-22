@@ -1,11 +1,11 @@
 # ----------------------------------------------------------------------------- # 
-# Compiling elk-10.8.16 on NERSC Perlmutter, cpu nodes only, Feb 2026
+# To compile elk-10.8.16 on NERSC Perlmutter, cpu nodes only, Feb 2026
 # 
 # Upon login PrgEnv-gnu and cray-mpich should be loaded by default.
 # 
 # Additionaly, you need to: load cray-fftw
 # 
-# At last we have these modules loaded: 
+# We have these modules loaded: 
 # 
 # Currently Loaded Modules:
 #   1) craype-x86-milan                10) craype/2.7.35
@@ -18,14 +18,15 @@
 #   8) cray-libsci/25.09.0             17) darshan/default
 #   9) cray-mpich/9.0.1                18) cray-fftw/3.3.10.11
 # 
+# At least, just do: make
+# 
 # ----------------------------------------------------------------------------- #
 # 
-# The following changes were made to the original make.inc:
+# For documentation, the following changes were made to the original make.inc:
 # (1) changed "mpif90" to "ftn" 
 # (2) changed "-lopenblas" to "-lblas" 
 # (3) added "-fallow-argument-mismatch" to F90_OPTS
-# 
-# Check lines 130-136 below. 
+# Check lines 131-137 below. 
 # 
 # ----------------------------------------------------------------------------- #
 
