@@ -1,13 +1,13 @@
 Update, 04/21/2026: 
 
 1. Check src_mod/readme.txt
-   Modified codes are copied in src_mod. 
+   Modified codes are all copied in src_mod. 
    src_mod/unchanged has the corresponding un-modified codes, for comparison. 
 
 2. Check the comments at the beginning of make.inc
    This make.inc is ready for compiling the code on NERSC Perlmutter CPU nodes. 
 
-3. For general reference, the user manual of this version is docs/elk.pdf
+3. For general reference, the user manual of this version is at docs/elk.pdf
 
 --------------------------------------------------------------------------------------
 Original README: 
