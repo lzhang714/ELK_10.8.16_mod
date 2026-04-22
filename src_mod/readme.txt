@@ -13,7 +13,7 @@ grep "!LZ" ./genvmatmt.f90
 will show the modified lines in it. 
 
 1. 
-Ground state calculation is carried out in gndstate.f90. 
+Ground state calculation is carried out in gndstate.f90 (gndstate.f90 is not touched).  
 When dft+u is turned on, it will first generate a density matrix then the potential matrix, with this two lines: 
 call gendmatmt
 call genvmatmt
