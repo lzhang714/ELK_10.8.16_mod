@@ -33,7 +33,7 @@ if (dftu /= 0) call vmatmtdu
 if (ftmtype > 0) call vmatmtftm
 ! symmetrise the potential
 call symdmat(lmaxdm,lmmaxdm,vmatmt)
-! 
+! copy vmatmt (of the target atom) to vmatmt_const   !LZ mod
 if ( fixorb .and. iscl == 1 ) then                   !LZ mod
   vmatmt_const(:,:,:,:) = vmatmt(:,:,:,:,fixorb_ias) !LZ mod, note this is after symmetrising vmatmt
 end if                                               !LZ mod
