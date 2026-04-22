@@ -1,9 +1,9 @@
 Update, 04/21/2026: 
 
 1. Modified codes are copied in /src_mod 
-   grep "!LZ" will show the modified lines in each file. 
+   Check the readme.txt in that dir. 
 
-2. Read the comments at the beginning of make.inc
+2. Check the comments at the beginning of make.inc
    This make.inc is ready for installing the code on NERSC Perlmutter CPU nodes. 
 
 --------------------------------------------------------------------------------------
