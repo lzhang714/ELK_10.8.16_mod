@@ -738,7 +738,7 @@ if ((dftu /= 0).or.(ftmtype /= 0)) then
 ! switch on fixorb for now for testing                        !LZ mod
   fixorb=.true.                                               !LZ mod
 ! which atom's vmatmt would be fixed, always 1 for now        !LZ mod
-  fixorb_ias=1                                                !LZ mod
+  fixorb_ias=1                                                !LZ mod, 1 means the 1st atom listed in elk.in
 ! matrix elements in spherical coordinates for TDDFT+U
   if (any(task == [460,461,462,463,478])) then
     if (allocated(vmatmti)) deallocate(vmatmti)
