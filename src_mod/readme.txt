@@ -14,7 +14,7 @@ will show the modified lines in it.
 
 1. 
 Ground state calculation is carried out in gndstate.f90 (gndstate.f90 is not touched).  
-When dft+u is turned on, it will first generate a density matrix then the potential matrix, with this two lines: 
+When dft+u is turned on, it will generate a density matrix then a potential matrix, with this two lines: 
 call gendmatmt
 call genvmatmt
 
@@ -24,7 +24,8 @@ subroutine gendmatmt (gendmatmt.f90) is not touched too.
 3. 
 subroutine genvmatmt (genvmatmt.f90) will generate the potential matrix, with this line: 
 if (dftu /= 0) call vmatmtdu
-This subroutine is modified by adding a few lines in the end, to make a copy of the potential matrix of the desired atom (when in the 1st scf iteration) into the newly defined quantity "vmatmt_const". 
+This subroutine is modified by adding a few lines in the end, to make a copy of the potential matrix 
+of the desired atom (when in the 1st scf iteration) into the newly defined quantity "vmatmt_const". 
 
 4. 
 subroutine vmatmtdu (vmatmtdu.f90) will do the real job to calculate the potential matrix. 
