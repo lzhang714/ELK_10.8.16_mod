@@ -1,10 +1,16 @@
 
-Brief description of the code flow and the modification: 
+The modified codes are: 
+init0.f90
+moddftu.f90
+genvmatmt.f90
+vmatmtdu.f90
+
+The original un-changed codes are copied in src_mod/unchanged.
 
 All added/modified lines are ended with "!LZ". 
 So, for example, do a 
 grep "!LZ" ./genvmatmt.f90
-will show the modifications in it. 
+will show the changed line in it. 
 
 1. 
 Ground state calculation is carried out in gndstate.f90. 
@@ -26,6 +32,6 @@ The most outer loop is over atoms.
 Within this loop, a few lines are added at the end to copy "vmatmt_const" back into the variable "vmatmt" to keep it constant. 
 
 5. 
-Necessary declaration and allocation of the new variables are added in moddftu.f90 and init0.f90.
+Declaration and allocation of the new variables are added in moddftu.f90 and init0.f90.
 
  
