@@ -18,8 +18,8 @@ complex(8), allocatable :: dmatmt(:,:,:,:,:)
 real(8) epsdmat
 ! potential matrix in each muffin-tin
 complex(8), allocatable :: vmatmt(:,:,:,:,:)
-! constant potential matrix in the one muffin-tin to fix to    !LZ mod
-complex(8), allocatable :: vmatmt_const(:,:,:,:)               !LZ mod
+! constant potential matrix in the one muffin-tin to fix to                !LZ mod
+complex(8), allocatable :: vmatmt_const(:,:,:,:)                           !LZ mod
 ! potential matrix in spherical coordinates for lmaxi and lmaxo
 complex(4), allocatable :: vmatmti(:,:,:,:,:),vmatmto(:,:,:,:,:)
 ! tvmatmt is .true. if the potential matrices are calculated
