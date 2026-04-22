@@ -1,0 +1,152 @@
+# ----------------------------------------------------------------------------- # 
+# Compiling elk-10.8.16 on NERSC Perlmutter, cpu nodes only, Feb 2026
+# 
+# Upon login PrgEnv-gnu and cray-mpich should be loaded by default.
+# Additionally I loaded cray-fftw.
+# So we have: 
+# 
+# Currently Loaded Modules:
+#   1) craype-x86-milan                10) craype/2.7.35
+#   2) libfabric/1.22.0                11) perftools-base/25.09.0
+#   3) craype-network-ofi              12) cpe/25.09
+#   4) xpmem/2.11.5-1.3_g73ade43320bc  13) cudatoolkit/12.9
+#   5) gcc-native/14                   14) craype-accel-nvidia80
+#   6) PrgEnv-gnu/8.6.0                15) gpu/1.0
+#   7) cray-dsmml/0.3.1                16) sqs/2.0
+#   8) cray-libsci/25.09.0             17) darshan/default
+#   9) cray-mpich/9.0.1                18) cray-fftw/3.3.10.11
+# 
+# ----------------------------------------------------------------------------- #
+# 
+# Then, in the given make.inc, I changed mpif90 to ftn, and
+#                                changed -lopenblas to -lblas, and
+#                                added -fallow-argument-mismatch to F90_OPTS.
+# 
+# (see the few lines below in between the two lines ending with "mod")
+# 
+# ----------------------------------------------------------------------------- #
+
+MAKE = make
+AR = ar
+
+# Elk requires BLAS/LAPACK and fast Fourier transform (FFT) libraries.
+
+# We recommend using optimised, mutithreaded BLAS/LAPACK libaries such as those
+# provided by the Intel Math Kernel Library (MKL), OpenBLAS or BLIS.
+
+# Elk can use either the Fastest Fourier Transform in the West (FFTW) or the
+# MKL FFT. Both single and double precision versions of the FFT are needed.
+
+
+#------------------------------------------------------------------------------#
+#                                  Libraries                                   #
+#------------------------------------------------------------------------------#
+
+#-------------------------------------------------------------------------------
+SRC_MKL = mkl_stub.f90
+# To enable MKL multithreaded parallelism, uncomment the following line and link
+# with the MKL library.
+#SRC_MKL =
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# If your compiler does *not* support the Message Passing Interface (MPI) then
+# uncomment the line below.
+#SRC_MPI = mpi_stub.f90
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Elk supports two FFT libraries:
+#   Fastest Fourier Transform in the West (FFTW)
+#   Intel Math Kernel Library (MKL) Fast Fourier Transform
+#
+# FFTW is enabled by default with:
+SRC_FFT = zfftifc_fftw.f90 cfftifc_fftw.f90
+#
+# To enable MKL FFT instead, copy mkl_dfti.f90 to the elk/src directory and
+# uncomment the line below.
+#SRC_FFT = mkl_dfti.f90 zfftifc_mkl.f90 cfftifc_mkl.f90
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+SRC_LIBXC = libxcifc_stub.f90
+# To enable Libxc first download and compile version 6.x of the library. Next
+# copy the files libxcf03.a and libxc.a to the elk/src directory and uncomment
+# the following lines.
+#LIB_LIBXC = libxcf03.a libxc.a
+#SRC_LIBXC = libxcf03.f90 libxcifc.f90
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+SRC_W90S = w90_stub.f90
+# To enable the Wannier90 library copy libwannier.a to the elk/src directory and
+# uncomment the following lines.
+#SRC_W90S =
+#LIB_W90 = libwannier.a
+#-------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------#
+#                                  Compilers                                   #
+#------------------------------------------------------------------------------#
+
+#-------------------------------------------------------------------------------
+# Intel Fortran LLVM-based compiler (ifx).
+#F90 = mpiifx
+#F90_OPTS = -O3 -xHost -ipo -qopenmp -qmkl=parallel
+#F90_LIB = -liomp5 -lpthread -lm -ldl
+#SRC_MKL =
+#AR = xiar
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Intel Fortran compiler classic (ifort) version 18 and later.
+#F90 = mpiifort
+#F90_OPTS = -O3 -xHost -ipo -qopenmp -mkl=parallel
+#F90_LIB = -liomp5 -lpthread -lm -ldl
+#SRC_MKL =
+#AR = xiar
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# GNU Fortran compiler with MKL.
+#F90 = mpif90
+#F90_OPTS = -Ofast -march=native -mtune=native -fopenmp -ffpe-summary=none -Wno-lto-type-mismatch
+#F90_LIB = -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lpthread
+#SRC_MKL =
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# GNU Fortran compiler with BLIS, libflame and FFTW.
+#F90 = mpif90
+#F90_OPTS = -Ofast -march=native -mtune=native -fopenmp -ffpe-summary=none -Wno-lto-type-mismatch
+#F90_LIB = -lblis -lflame -lfftw3 -lfftw3f
+#-------------------------------------------------------------------------------
+
+#========================================================================================================================= mod
+# GNU Fortran compiler with BLAS, LAPACK and FFTW.
+F90 = ftn
+F90_OPTS = -Ofast -march=native -mtune=native -fopenmp -ffpe-summary=none -Wno-lto-type-mismatch -fallow-argument-mismatch
+F90_LIB = -lblas -llapack -lfftw3 -lfftw3f
+SRC_OBLAS =
+#========================================================================================================================= mod
+
+#-------------------------------------------------------------------------------
+# Intel Fortran with debugging and profiling options.
+#F90 = mpiifort
+#F90_OPTS = -O3 -qopenmp -mkl=parallel -pg -xHost -init=snan,arrays -warn unused -traceback
+#F90_LIB = -liomp5 -lpthread -lm -ldl
+#SRC_MKL =
+#AR = ar
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# GNU Fortran debugging and profiling options.
+#F90 = gfortran
+#F90_OPTS = -O3 -Wall -Wunused -Warray-temporaries -Waliasing -Wintrinsics-std -Wtabs -Wfunction-elimination -Wrealloc-lhs-all -fopenmp -fbounds-check -pg
+#F90_LIB = -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lpthread
+#SRC_MKL =
+#SRC_MPI = mpi_stub.f90
+#-------------------------------------------------------------------------------
+
