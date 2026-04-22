@@ -10,7 +10,7 @@ The original un-changed codes are copied in src_mod/unchanged.
 All added/modified lines are ended with "!LZ". 
 So, for example, do a 
 grep "!LZ" ./genvmatmt.f90
-will show the changed line in it. 
+will show the modified lines in it. 
 
 1. 
 Ground state calculation is carried out in gndstate.f90. 
