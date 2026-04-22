@@ -25,16 +25,16 @@ use moddftu
 implicit none
 ! zero the non-local muffin-tin potential for each atom
 vmatmt(:,:,:,:,:)=0.d0
-! zero the one constant muffin-tin potential   !LZ mod
-vmatmt_const(:,:,:,:)=0.d0                     !LZ mod
+! zero the one constant muffin-tin potential         !LZ mod
+vmatmt_const(:,:,:,:)=0.d0                           !LZ mod
 ! add the DFT+U potential and calculate the corresponding energies
 if (dftu /= 0) call vmatmtdu
 ! add the fixed tensor moment potential if required
 if (ftmtype > 0) call vmatmtftm
 ! symmetrise the potential
 call symdmat(lmaxdm,lmmaxdm,vmatmt)
-! 
-if ( fixorb .and. iscl == 1 ) then                   !LZ mod
+! copy vmatmt (of the target atom) to vmatmt_const   !LZ mod
+if ( dftu /= 0 .and. fixorb .and. iscl == 1 ) then   !LZ mod
   vmatmt_const(:,:,:,:) = vmatmt(:,:,:,:,fixorb_ias) !LZ mod, note this is after symmetrising vmatmt
 end if                                               !LZ mod
 ! 

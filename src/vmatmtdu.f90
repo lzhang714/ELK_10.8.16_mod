@@ -106,14 +106,10 @@ do idu=1,ndftu
                 z1=dm(lm2,ispn,lm1,ispn)*dm(lm4,jspn,lm3,jspn)
                 z2=dm(lm4,jspn,lm1,ispn)*dm(lm2,ispn,lm3,jspn)
                 engyadu(ia,idu)=engyadu(ia,idu)+dble(z1-z2)*v
-                !LZ mod if statement
-                !if ( iscl >= 2 .and. ias == fixorb_ia ) then
-                !else 
                 vmatmt(lm1,ispn,lm2,ispn,ias)=vmatmt(lm1,ispn,lm2,ispn,ias) &
                  +dm(lm4,jspn,lm3,jspn)*v
                 vmatmt(lm1,ispn,lm4,jspn,ias)=vmatmt(lm1,ispn,lm4,jspn,ias) &
                  -dm(lm2,ispn,lm3,jspn)*v
-                !end if
               end do
             end do
 ! end loops over m3 and m4
