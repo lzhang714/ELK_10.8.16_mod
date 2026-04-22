@@ -19,6 +19,7 @@
 #   9) cray-mpich/9.0.1                18) cray-fftw/3.3.10.11
 # 
 # At least, just do: make
+# The executable is src/elk
 # 
 # ----------------------------------------------------------------------------- #
 # 
@@ -26,7 +27,7 @@
 # (1) changed "mpif90" to "ftn" 
 # (2) changed "-lopenblas" to "-lblas" 
 # (3) added "-fallow-argument-mismatch" to F90_OPTS
-# Check lines 131-137 below. 
+# Check lines 132-138 below. 
 # 
 # ----------------------------------------------------------------------------- #
 
