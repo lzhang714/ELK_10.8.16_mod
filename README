@@ -1,7 +1,8 @@
 Update, 04/21/2026: 
 
-1. Modified codes are copied in /src_mod 
-   Check the readme.txt in that dir. 
+1. Check src_mod/readme.txt
+   Modified codes are copied in src_mod. 
+   src_mod/unchanged has the corresponding un-modified codes, for comparison. 
 
 2. Check the comments at the beginning of make.inc
    This make.inc is ready for compiling the code on NERSC Perlmutter CPU nodes. 
