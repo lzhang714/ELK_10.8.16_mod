@@ -6,6 +6,8 @@ call genvmatmt
 
 2. gendmatmt (gendmatmt.f90) is not touched. 
 
-3. genvmatmt (genvmatmt.f90) is modified by adding a few lines in the end, to make a copy of the potential matrix of the desired atom in "vmatmt_const". 
+3. genvmatmt (genvmatmt.f90) will generate the potential matrix: 
+if (dftu /= 0) call vmatmtdu
+This is modified by adding a few lines in the end, to make a copy of the potential matrix of the desired atom in "vmatmt_const". 
 
 4. 
