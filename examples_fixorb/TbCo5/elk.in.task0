@@ -1,4 +1,5 @@
-!! DFT+U ground state run of TbCo5, with SOC
+! DFT+U ground state run of TbCo5, with SOC
+! /pscratch/sd/z/zhang714/elk2trix_RETM5/TbCo5/dftu_ELK.10.8.16_fixorb
 
 tasks
     0
