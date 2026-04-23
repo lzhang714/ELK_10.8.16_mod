@@ -188,9 +188,32 @@ do idu=1,ndftu
 !-----------------------------------------------------------------!
 !     fix orbital occ, before going out of atoms/species loop     !
 !-----------------------------------------------------------------!
-    if ( fixorb .and. iscl>1 .and. ias == fixorb_ias ) then           !LZ mod
-      vmatmt(:,:,:,:,ias) = vmatmt_const(:,:,:,:)                     !LZ mod
-    end if                                                            !LZ mod
+    if ( fixorb .and. iscl>1 .and. ias == fixorb_ias ) then           !LZ 
+      vmatmt(:,:,:,:,ias) = vmatmt_const(:,:,:,:)                     !LZ assign vmatmt_const to vmatmt
+      if ( iscl==2 .and. mp_mpi ) then                                !LZ write the constant vmatmt_const once, to standard output
+        ! --------------------------------- 
+        ! As defined in moddftu.f90: lmaxdm=3, lmmaxdm=(lmaxdm+1)**2
+        ! So, dimensions of vmatmt_const is 16x16 for a specific spin-spin config. 
+        ! Here we only write the 7x7 block for l=3.
+        write(*,'("spin-spin : 1-1")') 
+        do lm1=lma,lmb                                                !LZ, for l=3, [lma,lmb]=[10,16] 
+          write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,1),lm2=lma,lmb)
+        end do
+        write(*,'("spin-spin : 1-2")') 
+        do lm1=lma,lmb               
+          write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,2),lm2=lma,lmb)
+        end do
+        write(*,'("spin-spin : 2-1")') 
+        do lm1=lma,lmb               
+          write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,1),lm2=lma,lmb)
+        end do
+        write(*,'("spin-spin : 2-2")') 
+        do lm1=lma,lmb               
+          write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,2),lm2=lma,lmb)
+        end do
+        ! --------------------------------- 
+      end if    !! end if ( iscl==2 .and. mp_mpi ) 
+    end if    !! end if ( fixorb .and. iscl>1 .and. ias == fixorb_ias ) 
     ! 
 ! end loop over atoms
   end do
