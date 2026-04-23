@@ -194,7 +194,11 @@ do idu=1,ndftu
         ! --------------------------------- 
         ! As defined in moddftu.f90: lmaxdm=3, lmmaxdm=(lmaxdm+1)**2
         ! So, dimensions of vmatmt_const is 16x16 for a specific spin-spin config. 
-        ! Here we only write the 7x7 block for l=3.
+        ! 1 for s, 
+        ! [2,4] for p, 
+        ! [5-9] for d, 
+        ! [10,16] for f
+        ! Here we only write the 7x7 diagonal block for l=3.
         write(*,'("spin-spin : 1-1")') 
         do lm1=lma,lmb                                                !LZ, for l=3, [lma,lmb]=[10,16] 
           write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,1),lm2=lma,lmb)
