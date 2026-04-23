@@ -199,21 +199,25 @@ do idu=1,ndftu
         ! [5-9] for d, 
         ! [10,16] for f
         ! Here we only write the 7x7 diagonal block for l=3.
-        write(*,'("spin-spin : 1-1")') 
-        do lm1=lma,lmb                                                !LZ, for l=3, [lma,lmb]=[10,16] 
-          write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,1),lm2=lma,lmb)
+        write(*,'("spin-spin : 1-1")')
+        do lm1=lma,lmb                                                !LZ, for l=3, [lma,lmb]=[10,16]
+          !write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,1),lm2=lma,lmb)
+          write(*,*) (vmatmt_const(lm1,1,lm2,1),lm2=lma,lmb)
         end do
-        write(*,'("spin-spin : 1-2")') 
-        do lm1=lma,lmb               
-          write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,2),lm2=lma,lmb)
+        write(*,'("spin-spin : 1-2")')
+        do lm1=lma,lmb
+          !write(*,'(500G18.10)') (vmatmt_const(lm1,1,lm2,2),lm2=lma,lmb)
+          write(*,*) (vmatmt_const(lm1,1,lm2,2),lm2=lma,lmb)
         end do
-        write(*,'("spin-spin : 2-1")') 
-        do lm1=lma,lmb               
-          write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,1),lm2=lma,lmb)
+        write(*,'("spin-spin : 2-1")')
+        do lm1=lma,lmb
+          !write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,1),lm2=lma,lmb)
+          write(*,*) (vmatmt_const(lm1,2,lm2,1),lm2=lma,lmb)
         end do
-        write(*,'("spin-spin : 2-2")') 
-        do lm1=lma,lmb               
-          write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,2),lm2=lma,lmb)
+        write(*,'("spin-spin : 2-2")')
+        do lm1=lma,lmb
+          !write(*,'(500G18.10)') (vmatmt_const(lm1,2,lm2,2),lm2=lma,lmb)
+          write(*,*) (vmatmt_const(lm1,2,lm2,2),lm2=lma,lmb)
         end do
         ! --------------------------------- 
       end if    !! end if ( iscl==2 .and. mp_mpi ) 
