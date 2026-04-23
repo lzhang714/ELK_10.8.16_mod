@@ -30,7 +30,9 @@ of the desired atom (when in the 1st scf iteration) into the newly defined quant
 4. 
 subroutine vmatmtdu (vmatmtdu.f90) will do the real job to calculate the potential matrix. 
 The most outer loop is over atoms. 
-Within this loop, a few lines are added at the end to copy "vmatmt_const" back into the variable "vmatmt" to keep it constant. 
+Within this loop, a few lines are added at the end to 
+(4-a) copy "vmatmt_const" back into the variable "vmatmt" to keep it constant, and 
+(4-b) print "vmatmt_const" in standard output. 
 
 5. 
 Declaration and allocation of the new variables are added in moddftu.f90 and init0.f90.
